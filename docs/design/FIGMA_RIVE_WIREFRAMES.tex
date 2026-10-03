@@ -1,0 +1,386 @@
+\documentclass[9pt,a4paper,landscape]{article}
+\usepackage[margin=11mm,headheight=11pt,footskip=7mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\definecolor{ink}{HTML}{17282B}
+\definecolor{teal}{HTML}{087C76}
+\definecolor{pale}{HTML}{F3F7F5}
+\definecolor{light}{HTML}{E7F4F0}
+\definecolor{rule}{HTML}{AFC9C2}
+\definecolor{muted}{HTML}{526568}
+\definecolor{warn}{HTML}{F9ECE6}
+\hypersetup{colorlinks=true,urlcolor=teal,pdftitle={Webby Voicer visual wireframe handoff}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\scriptsize\color{muted} WEBBY VOICER / VISUAL HANDOFF}
+\fancyhead[R]{\scriptsize\color{muted} DUB MODE BETA / DESKTOP + PHONE}
+\fancyfoot[L]{\scriptsize\color{muted} 03 OCT 2026 \quad Draft layout, not visual branding}
+\fancyfoot[R]{\scriptsize\color{muted}\thepage\ / 11}
+\renewcommand{\headrulewidth}{0.3pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=11pt,itemsep=1pt,topsep=1pt,parsep=0pt}
+\tikzset{screen/.style={draw=ink,line width=.6pt,fill=white},
+ box/.style={draw=rule,fill=pale,rounded corners=1pt},
+ active/.style={draw=teal,fill=light,rounded corners=1pt},
+ button/.style={draw=teal,fill=teal,rounded corners=1pt},
+ subtle/.style={draw=rule,fill=white,rounded corners=1pt},
+ media/.style={draw=ink,fill=ink!7}}
+\newcommand{\B}[6][box]{\draw[#1] (#2,#3) rectangle ++(#4,#5);\node[align=center,font=\scriptsize,text=ink,text width={#4 cm-2mm}] at ($(#2,#3)+(#4/2,#5/2)$) {#6};}
+\newcommand{\Btn}[5]{\draw[button] (#1,#2) rectangle ++(#3,#4);\node[align=center,font=\scriptsize\bfseries,text=white,text width={#3 cm-1mm}] at ($(#1,#2)+(#3/2,#4/2)$) {#5};}
+\newcommand{\Cap}[3]{\node[anchor=west,font=\scriptsize\bfseries,text=teal] at (#1,#2) {#3};}
+\newcommand{\Desktop}[1]{\draw[screen] (.1,5.55) rectangle (16.1,13.75);\draw[fill=pale,draw=rule] (.1,12.96) rectangle (16.1,13.75);\node[anchor=west,font=\scriptsize\bfseries] at (.34,13.35) {WEBBY VOICER};\node[anchor=east,font=\scriptsize,text=muted] at (15.85,13.35) {#1};\Cap{.1}{13.98}{DESKTOP / 1440 px reference}}
+\newcommand{\Phone}[1]{\draw[screen] (.1,.12) rectangle (4.25,5.27);\draw[fill=pale,draw=rule] (.1,4.66) rectangle (4.25,5.27);\node[anchor=west,font=\tiny\bfseries] at (.28,4.96) {WEBBY};\node[anchor=east,font=\tiny,text=muted] at (4.06,4.96) {#1};\Cap{.1}{5.42}{PHONE / 390 px first viewport}}
+\newcommand{\SideNote}[1]{\draw[active] (4.55,.12) rectangle (16.1,5.27);\node[anchor=north west,text width=10.95cm,font=\small,text=ink,align=left] at (4.82,5.02) {#1};}
+\newcommand{\Page}[3]{\clearpage\vspace*{-2mm}{\Large\bfseries\color{ink} #1\quad #2}\hfill{\small\color{teal}#3}\par\vspace{1mm}\color{rule}\rule{\linewidth}{.4pt}\color{ink}\vspace{1mm}}
+\newcommand{\Spec}[2]{\vspace{3pt}{\bfseries\color{teal}#1}\par\vspace{1pt}{\color{ink}#2}\par}
+\newcommand{\SpecsStart}{\begin{minipage}[t]{.365\linewidth}\vspace{2mm}\small}
+\newcommand{\SpecsEnd}{\end{minipage}}
+\newcommand{\WireStart}{\begin{minipage}[t]{.615\linewidth}\vspace{1mm}\begin{tikzpicture}[x=1cm,y=1cm]}
+\newcommand{\WireEnd}{\end{tikzpicture}\end{minipage}\hfill}
+\begin{document}
+\Page{P01}{Start}{ENTRY / CHOOSE A PATH}
+\WireStart
+\Desktop{Market \quad Help}
+\B[active]{.45}{8.65}{8.8}{3.92}{A / Dub a scene with friends\\One sentence explaining import, solo, rooms}
+\Btn{.8}{7.75}{3.5}{.66}{B / Try demo}
+\B[subtle]{4.52}{7.75}{3.55}{.66}{C / Import ZIP or folder}
+\B{9.58}{8.65}{6.18}{3.92}{D / Join room\\6-character code field\\Stage name follows}
+\B[active]{.45}{5.9}{15.3}{1.52}{E / Browse packs \quad Starter picks and GameBanana discovery \quad Open market}
+\Phone{Start}
+\B[active]{.36}{3.32}{3.63}{1.09}{A / Short pitch}
+\Btn{.36}{2.64}{3.63}{.48}{B / Try demo}
+\B[subtle]{.36}{2.0}{3.63}{.48}{C / Import ZIP / folder}
+\B{.36}{1.03}{3.63}{.74}{D / Join code + action}
+\B[active]{.36}{.33}{3.63}{.48}{E / Browse packs}
+\SideNote{\textbf{Reading order.} Start with a clear primary action, then import, join and market. All four choices stay visible on phone without a menu.\\[7pt]\textbf{Navigation.} B and C lead to P03 after load; D leads to P05 with the code prefilled; E leads to P02.\\[7pt]\textbf{What this draft means.} Blocks mark hierarchy and content placement only; Figma chooses color, type and illustration.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Let a new player choose demo, local pack, an existing room or pack discovery within seconds. No account or sign-in path.}
+\Spec{A / Hero}{Brand, independent-project attribution, one-line Dub Mode explanation and a clear promise: record one line at a time, then watch or export. Avoid making this a long landing page.}
+\Spec{B--C / Import}{Try demo uses a bundled synthetic pack. Import accepts legacy Dub ZIP or folder; drag-and-drop may supplement a visible file picker. Show reading, validation, invalid pack and missing-video states. Solo files remain local.}
+\Spec{D / Join}{Input is six uppercase characters. Inline error for invalid or unavailable code; never clear typed code on error. Stage name and spectator choice live on P05.}
+\Spec{E / Market}{Opens source-linked listings; the market is part of beta, not a coming-soon teaser.}
+\Spec{Phone and states}{Deliver 1440/390 frames and a 320 px check. Keep actions above promotional copy. Draw default, import busy, import error and invalid-code states.}
+\SpecsEnd
+
+\Page{P02}{Pack market}{DISCOVER / LINK TO SOURCE}
+\WireStart
+\Desktop{Import pack \quad Join room}
+\B[active]{.43}{11.45}{15.34}{1.15}{A / Browse Dub packs \quad Search or browse current listings}
+\B[subtle]{.43}{10.66}{15.34}{.55}{B / Starter picks \quad Latest GameBanana \quad No category filtering}
+\B{.43}{7.03}{4.8}{3.36}{C / Pack art\\Title, creator, label\\Open source page}
+\B{5.65}{7.03}{4.8}{3.36}{C / Pack art\\Title, creator, label\\Open source page}
+\B{10.86}{7.03}{4.9}{3.36}{C / Missing art case\\Title, creator\\Open source page}
+\B[subtle]{.43}{5.86}{15.34}{.86}{D / Previous \quad Page number \quad Next \qquad Import downloaded ZIP}
+\Phone{Market}
+\B[subtle]{.34}{4.0}{3.68}{.43}{A / Browse packs}
+\B[active]{.34}{3.53}{3.68}{.34}{B / Source + newest}
+\B{.34}{1.94}{3.68}{1.42}{C / art, creator, source}
+\B{.34}{.34}{3.68}{1.42}{C / next card}
+\SideNote{\textbf{Source model.} A listing opens its original GameBanana page. The player downloads there, returns here and imports the ZIP. Never draw an in-app Download button unless a specific mirror is licensed.\\[7pt]\textbf{Card density.} Desktop may use a grid; phone uses full-width cards. Source attribution and the action are visible without opening detail.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Help players find a pack while showing where it came from. No paid checkout, submissions or content category filter.}
+\Spec{A--B / Browse}{Starter picks and latest GameBanana listings. If search or tabs are drawn, they must work with loaded data. Mature/category labels may appear when provided; they do not hide items.}
+\Spec{C / Pack card}{Artwork or neutral fallback, title, creator, original source badge/link and any supplied category label. Long titles wrap; creator stays readable. The source action opens a new tab.}
+\Spec{D / Pagination}{Previous/next and page feedback. Keep an obvious Import ZIP path for a pack downloaded elsewhere.}
+\Spec{States}{Loading skeleton, populated, no results, listing API error, missing image, long title, slow source page. Error includes retry and import path.}
+\Spec{Acceptance}{Every GameBanana card names or links its original page. The interface must not suggest Webby Voicer owns or mirrors all packs.}
+\SpecsEnd
+
+\Page{P03}{Pack ready}{VERIFY / CHOOSE SOLO OR ROOM}
+\WireStart
+\Desktop{Back to start}
+\B[media]{.45}{7.38}{9.55}{5.27}{A / 16:9 reference video\\Play / fallback frame}
+\B[active]{10.3}{10.25}{5.45}{2.4}{B / Icon, title, creator\\subtitle if present}
+\B{10.3}{8.9}{5.45}{1.1}{C / duration, 22 lines, 2 roles}
+\B[active]{10.3}{7.38}{5.45}{1.24}{D / Format status\\OGV conversion progress}
+\Btn{.45}{6.1}{6.9}{.86}{E / Rehearse alone}
+\B[subtle]{7.67}{6.1}{8.08}{.86}{F / Host room with this pack}
+\Phone{Pack ready}
+\B[media]{.32}{2.95}{3.7}{1.54}{A / video}
+\B[active]{.32}{2.13}{3.7}{.65}{B--C / summary}
+\B{.32}{1.41}{3.7}{.55}{D / conversion status}
+\Btn{.32}{.81}{3.7}{.43}{E / Rehearse}
+\B[subtle]{.32}{.24}{3.7}{.43}{F / Host room}
+\SideNote{\textbf{Compatibility gate.} Both next actions remain disabled until the scene is playable. Conversion happens on the player's device where required; describe progress and failure without promising an exact duration.\\[7pt]\textbf{Missing assets.} Use text and a neutral icon if pack artwork or subtitle is absent. Existing Dub packs may have an OGV video, backing track and per-line images.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Confirm what was imported and make the solo/room choice explicit. This is the compatibility checkpoint.}
+\Spec{A / Preview}{Contained 16:9 reference video with poster fallback, accessible play control, caption treatment and media error. Do not stretch source video.}
+\Spec{B--C / Metadata}{Title, creator, optional subtitle/icon, role names, line count and duration. Use the real sample: 1:15, 22 lines, two roles and long captions.}
+\Spec{D / Processing}{States: validating, video ready, conversion required, converter loading, converting with progress, conversion failed and retry. Say why conversion is needed and keep the status visible on phone.}
+\Spec{E--F / Next}{Solo opens P04. Host opens P05 with this pack attached. Buttons become available only after validation and video preparation.}
+\Spec{Phone}{Preview, identity and processing status precede actions. On a long conversion, the player can see a stable progress summary after scrolling.}
+\SpecsEnd
+
+\Page{P04}{Solo rehearsal}{ONE LINE AT A TIME}
+\WireStart
+\Desktop{Pack title \quad Export}
+\B[media]{.42}{8.72}{8.9}{3.9}{A / 16:9 reference video\\captions / line image}
+\B{9.58}{6.48}{6.14}{6.14}{B / 22-line list\\number, time, role, caption\\saved state; selected row\\scroll + jump}
+\B[active]{.42}{7.65}{8.9}{.82}{C / Selected role + full caption + timestamp}
+\B[subtle]{.42}{6.65}{4.14}{.75}{D / Hear original}
+\B[subtle]{4.75}{6.65}{4.57}{.75}{E / Saved take: play / retake}
+\Btn{.42}{5.82}{4.14}{.63}{F / Record / Stop \& Save}
+\B[active]{4.75}{5.82}{4.57}{.63}{G / Play mixed scene}
+\Phone{Solo}
+\B[media]{.32}{3.22}{3.7}{1.27}{A / video}
+\B[active]{.32}{2.35}{3.7}{.71}{C / current line, full text}
+\B[subtle]{.32}{1.77}{3.7}{.44}{D / original}
+\Btn{.32}{1.16}{3.7}{.45}{F / Record / Save}
+\B{.32}{.34}{3.7}{.67}{B / Lines drawer + progress}
+\SideNote{\textbf{Phone task focus.} The active line, its full caption and the record control are together. The 22-line list becomes a drawer or stepper with a jump-to-line path.\\[7pt]\textbf{Retake safety.} Preserve the previous saved take until the new take has been recorded and saved. The original voice fills unrecorded lines when available.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Let one player dub each timed line, compare a local take with the original and export a finished scene.}
+\Spec{A--C / Context}{Reference video, optional frame image, role, number, exact timestamp and full caption. List may clamp captions, but active caption cannot be truncated. Overlapping timestamps remain distinct rows.}
+\Spec{D--F / Recorder}{Hear original; request mic permission on first record; record, stop and save locally; play saved take; retake. Distinguish unsaved recording from saved take. Show timer and optional level.}
+\Spec{G / Result}{Mixed-scene preview with backing track, original voices for unrecorded lines, subtitles and creator credit; local video export with rendering/progress and format explanation.}
+\Spec{States}{Unrecorded, permission prompt/denied, recording, saved, retaking, mic/media failure, preview playing, rendering and download complete.}
+\Spec{Acceptance}{No automatic score. User can jump to any line and can always see whether that line has a saved take.}
+\SpecsEnd
+
+\Page{P05}{Create or join room}{ANONYMOUS ENTRY}
+\WireStart
+\Desktop{Back \quad Help}
+\B[active]{.48}{10.47}{7.36}{2.15}{A / Create with current pack\\pack title and creator}
+\B[active]{8.23}{10.47}{7.36}{2.15}{B / Join existing room\\six-character code}
+\B[subtle]{.48}{8.82}{15.11}{1.2}{C / Stage name field \quad No account needed}
+\B{.48}{7.34}{15.11}{1.13}{D / Join as performer or spectator\\host is a performer}
+\Btn{.48}{6.2}{7.36}{.72}{E / Create room}
+\B[subtle]{8.23}{6.2}{7.36}{.72}{F / Join room}
+\Phone{Room entry}
+\B[active]{.3}{3.83}{3.75}{.55}{A / Create or B / Join}
+\B[subtle]{.3}{3.1}{3.75}{.52}{B / code if joining}
+\B[subtle]{.3}{2.36}{3.75}{.52}{C / stage name}
+\B{.3}{1.53}{3.75}{.63}{D / performer / spectator}
+\Btn{.3}{.62}{3.75}{.6}{E--F / Continue}
+\SideNote{\textbf{Two entry contexts.} Creating comes from P03 with a ready pack. Joining comes from P01 with a code; the screen should not ask a joiner to import a pack.\\[7pt]\textbf{Room code.} Use legible uppercase characters and copy/share treatment later in lobby. Preserve input when a join request fails.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Enter an anonymous room with a stage name. Creating and joining share a visual system but have different required fields.}
+\Spec{A / Create}{Show the attached pack and temporary sharing note: the pack and submitted takes are available to members while the room exists, then removed when ended or expired.}
+\Spec{B / Join}{Six-character uppercase room code. A joining player chooses performer or spectator; spectators cannot claim roles or export.}
+\Spec{C--D / Identity}{Stage name is temporary and not an account. Long names should truncate in participant lists while retaining full text in an accessible view.}
+\Spec{E--F / Submit}{One context-specific primary button. Disable during request, show inline validation and preserve values on failure.}
+\Spec{States}{Idle, opening/joining, invalid code, full room, locked room, unavailable/expired room and reconnecting. Give a return-to-start path.}
+\SpecsEnd
+
+\Page{P06}{Room lobby}{PEOPLE / ROLES / HOST SETTINGS}
+\WireStart
+\Desktop{Pack title \quad Leave room}
+\B[active]{.42}{11.36}{15.3}{1.27}{A / Room code + Copy / Share \quad Phase: waiting \quad Connection state}
+\B{.42}{6.72}{5.15}{4.37}{B / Participants\\host, performers (max 8)\\spectators, online state}
+\B{5.85}{6.72}{5.21}{4.37}{C / Cast slots\\claim role / assigned by host\\unclaimed roles}
+\B[active]{11.34}{6.72}{4.38}{4.37}{D / Host settings\\lock joins; turns / simultaneous\\reactions; voting (off)}
+\Btn{.42}{5.87}{15.3}{.57}{E / Host: Start recording \quad Others: Waiting for host}
+\Phone{Lobby}
+\B[active]{.3}{3.89}{3.75}{.51}{A / code + share}
+\B{.3}{2.91}{3.75}{.8}{C / role claim}
+\B{.3}{1.8}{3.75}{.92}{B / people}
+\B[active]{.3}{.87}{3.75}{.72}{D / host settings tab}
+\Btn{.3}{.3}{3.75}{.39}{E / Start / Waiting}
+\SideNote{\textbf{Permissions.} Host sees assignment and settings controls; performers can claim an open role; spectators see roster and cast read-only.\\[7pt]\textbf{Safe host exit.} Ending a room requires a clear confirmation that shared pack and takes are deleted. A normal leave action for a non-host must not look like global deletion.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Let the host prepare a room and each player understand their role before recording starts.}
+\Spec{A / Identity}{Six-character room code, copy invite link, copied/error feedback, current phase and connection status stay visible.}
+\Spec{B--C / People}{List host, up to eight performers and additional spectators; online/reconnecting/offline states; role ownership and unclaimed roles. Host can assign or reassign before start.}
+\Spec{D / Host controls}{Lock new joins; choose one-line turns or simultaneous recording; toggle reactions; toggle voting, default off. Name the current setting rather than relying on color.}
+\Spec{E / Start}{Host-only button. If start is blocked, explain why. Others see waiting state and what happens next.}
+\Spec{States}{Host, performer, spectator; room open/locked; role open/claimed; member disconnected; pack transfer pending; start blocked; ending confirmation.}
+\SpecsEnd
+
+\Page{P07}{Room recording}{PRIVATE TAKE / EXPLICIT SUBMIT}
+\WireStart
+\Desktop{Room code \quad Phase + connection}
+\B[active]{.42}{11.65}{15.3}{.95}{A / Turn 4 of 22 or Simultaneous \quad My role \quad Shared progress}
+\B[media]{.42}{8.0}{7.55}{3.38}{B / Reference frame / video\\current line caption}
+\B{8.25}{8.0}{7.47}{3.38}{C / Assigned line queue\\other submissions + statuses}
+\B[subtle]{.42}{7.12}{3.55}{.6}{D / Hear original}
+\Btn{4.22}{7.12}{3.75}{.6}{E / Record / Stop \& Save}
+\B[subtle]{8.25}{7.12}{3.55}{.6}{F / Play / Retake}
+\Btn{12.05}{7.12}{3.67}{.6}{G / Submit to room}
+\B[active]{.42}{5.9}{15.3}{.92}{H / Host: next turn / showcase \quad Spectator: submitted-take listening only}
+\Phone{Recording}
+\B[active]{.3}{3.9}{3.75}{.52}{A / turn + role}
+\B[media]{.3}{2.6}{3.75}{1.12}{B / frame + caption}
+\B[subtle]{.3}{2.03}{3.75}{.43}{D / Hear original}
+\Btn{.3}{1.43}{3.75}{.46}{E / Record / Save}
+\B[subtle]{.3}{.84}{3.75}{.44}{F / Retake / play}
+\Btn{.3}{.28}{3.75}{.42}{G / Submit}
+\SideNote{\textbf{Critical distinction.} A saved take stays on this device; only a separate Submit to room action shares it. Other players never hear a live microphone.\\[7pt]\textbf{Modes.} Turn mode focuses one current line. Simultaneous mode lets performers choose among assigned lines. A spectator receives a progress/listening view, not a recorder.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Record the current or assigned line safely, then intentionally submit a take for the group scene.}
+\Spec{A--C / Context}{Room phase, connection, role and line position; full active caption, timestamp, reference frame and assigned queue. Show status of submitted takes separately from local drafts.}
+\Spec{D--F / Local work}{Hear original, request mic, record, stop and save, replay or retake. Preserve previous saved take until replacement succeeds. Use timer and optional input level.}
+\Spec{G / Share}{Submit to room is visibly separate from Save. Confirmation identifies the line and whether this replaces a prior submitted take.}
+\Spec{H / Host}{Advance one-line turns or start showcase when appropriate. Keep absent or disconnected participants understandable.}
+\Spec{States}{My turn, waiting, simultaneous, unsent local take, submitted, replacement submitted, mic blocked, disconnected, spectator, host controls.}
+\SpecsEnd
+
+\Page{P08}{Group showcase}{WATCH TOGETHER / EXPORT}
+\WireStart
+\Desktop{Room code \quad Leave}
+\B[active]{.43}{11.71}{15.3}{.9}{A / 5-second countdown \quad sync status / Tap to start fallback}
+\B[media]{.43}{6.66}{10.55}{4.8}{B / Finished scene 16:9\\captions + creator credit\\player controls}
+\B{11.27}{9.3}{4.46}{2.16}{C / Reactions if enabled\\clap, laugh, heart, fire}
+\B{11.27}{7.15}{4.46}{1.9}{D / Favorite performer vote\\only if host enabled}
+\Btn{.43}{5.88}{10.55}{.56}{E / Performer: Export video}
+\B[subtle]{11.27}{5.88}{4.46}{.56}{F / Finished / Next}
+\Phone{Showcase}
+\B[active]{.3}{3.96}{3.75}{.44}{A / countdown}
+\B[media]{.3}{2.12}{3.75}{1.68}{B / video + captions}
+\B{.3}{1.49}{3.75}{.47}{C / reactions if on}
+\B{.3}{.93}{3.75}{.43}{D / vote if on}
+\Btn{.3}{.3}{3.75}{.43}{E / performer export}
+\SideNote{\textbf{Optional controls collapse.} If reactions or voting are off, remove those rows and let the player expand. Voting is off by default. There is no automatic score.\\[7pt]\textbf{Autoplay fallback.} If a browser blocks synchronized playback, keep the countdown state and show an explicit Tap to start control over the video.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Watch the combined scene together, with optional social response and performer-only export.}
+\Spec{A / Sync}{Waiting, five-second countdown, playing, paused/manual-start and finished. Network drift or blocked autoplay needs a clear status and recovery action.}
+\Spec{B / Player}{16:9 scene, captions, creator credit, standard accessible media controls. Video remains the visual focus on phone.}
+\Spec{C--D / Social}{Host decides whether reactions and voting appear. Reactions are lightweight feedback; vote is for a favorite performer. Do not add a score, ranking or results screen by default.}
+\Spec{E / Export}{Visible to performers while the room is open; spectators can watch but do not get download control. Show rendering, ready, failed/retry and browser-specific format.}
+\Spec{States}{Waiting, countdown, blocked play, playing, finished, export busy/done/error, spectator and optional controls off.}
+\SpecsEnd
+
+\Page{P09}{Room ended and recovery}{EXPLAIN WHAT HAPPENED}
+\WireStart
+\Desktop{Help}
+\B[active]{3.3}{8.06}{9.6}{4.17}{A / Room ended or connection lost\\reason, what is retained, what is deleted\\next step}
+\Btn{4.03}{6.92}{4.15}{.69}{B / Return to start}
+\B[subtle]{8.48}{6.92}{3.69}{.69}{C / Retry connection}
+\B{3.3}{5.84}{9.6}{.79}{D / Local unsent take note if reconnecting}
+\Phone{Room status}
+\B[active]{.34}{2.58}{3.67}{1.77}{A / reason + deletion}
+\B{.34}{1.79}{3.67}{.58}{D / local take note}
+\Btn{.34}{1.08}{3.67}{.5}{B / Start}
+\B[subtle]{.34}{.4}{3.67}{.5}{C / Retry if possible}
+\SideNote{\textbf{Two fundamentally different messages.} A temporary disconnect can retry while a local unsent take stays on device. An ended or expired room cannot be restored after server media deletion.\\[7pt]\textbf{Do not offer a dead retry.} Remove C for ended/expired rooms; for transient failure, keep the last known room code and show retry progress.}
+\WireEnd
+\SpecsStart
+\Spec{Purpose}{Give a truthful recovery path after a room ends, expires or loses connection.}
+\Spec{A / Reason}{Separate host-ended, inactivity expiry, unavailable room and temporary connection loss. Use a plain headline, one short explanation and a concrete next action.}
+\Spec{B / Return}{Primary for permanently ended rooms. This starts a fresh flow; no copy should imply server pack or take recovery.}
+\Spec{C / Retry}{Only for temporary disconnection. Show reconnecting and failure feedback. Preserve code and any local unsent take while retrying.}
+\Spec{D / Data}{Explain that shared pack and submitted takes are automatically removed when room ends or expires. Local recordings may persist only according to actual app behavior; avoid broad promises.}
+\Spec{States}{Host ended, room expired, room unavailable, disconnected/reconnecting, reconnection failed and returned to start.}
+\SpecsEnd
+
+\Page{C}{Reusable UI components}{ONE CANONICAL FIGMA LIBRARY}
+\WireStart
+\Cap{.2}{13.98}{COMPONENT BOARD / VISUAL DRAFT}
+\B[box]{.1}{11.7}{7.85}{1.99}{}
+\Cap{.34}{13.4}{A / BUTTON SET}
+\Btn{.35}{12.38}{1.56}{.52}{Primary}
+\B[subtle]{2.08}{12.38}{1.66}{.52}{Secondary}
+\B[subtle]{3.91}{12.38}{1.35}{.52}{Quiet}
+\B[subtle]{5.43}{12.38}{1.38}{.52}{Danger}
+\node[anchor=west,font=\tiny,text=muted] at (.35,11.94) {focus ring / disabled / busy / icon + label variants};
+\B[box]{8.25}{11.7}{7.85}{1.99}{}
+\Cap{8.49}{13.4}{B / FIELDS}
+\B[subtle]{8.5}{12.3}{3.35}{.57}{AB12CD / room code}
+\B[subtle]{12.05}{12.3}{3.75}{.57}{Your stage name}
+\node[anchor=west,font=\tiny,text=muted] at (8.5,11.96) {default, focus, error message, disabled};
+\B[box]{.1}{9.25}{7.85}{2.2}{}
+\Cap{.34}{11.17}{C / PACK CARD}
+\B[media]{.35}{9.59}{2.03}{1.31}{art / fallback}
+\node[anchor=west,font=\scriptsize\bfseries] at (2.66,10.58) {Pack title can wrap};
+\node[anchor=west,font=\tiny,text=muted] at (2.66,10.17) {Creator / source attribution};
+\B[active]{2.65}{9.57}{3.22}{.44}{Open source page};
+\B[box]{8.25}{9.25}{7.85}{2.2}{}
+\Cap{8.49}{11.17}{D / IMPORT + CONVERSION}
+\B[subtle]{8.5}{9.91}{3.17}{.73}{Choose ZIP / folder}
+\B[active]{11.94}{9.91}{3.87}{.73}{Converting 42\%}
+\node[anchor=west,font=\tiny,text=muted] at (8.5,9.53) {reading / unsupported / retry / ready};
+\B[box]{.1}{6.77}{7.85}{2.2}{}
+\Cap{.34}{8.69}{E / LINE ROW + DETAIL}
+\B[active]{.35}{7.62}{7.34}{.58}{04  00:13.42  ROLE A  Full selected caption}
+\B[subtle]{.35}{7.02}{7.34}{.43}{05  00:13.42  ROLE B  Saved take};
+\B[box]{8.25}{6.77}{7.85}{2.2}{}
+\Cap{8.49}{8.69}{F / RECORDER + MEDIA}
+\B[subtle]{8.5}{7.56}{2.18}{.57}{Hear original}
+\Btn{10.91}{7.56}{2.12}{.57}{Record}
+\B[subtle]{13.25}{7.56}{2.55}{.57}{Play / Retake}
+\node[anchor=west,font=\tiny,text=muted] at (8.5,7.08) {timer / local save / mic denied / export};
+\B[box]{.1}{4.24}{7.85}{2.25}{}
+\Cap{.34}{6.21}{G / PARTICIPANT + ROLE}
+\B[subtle]{.35}{5.34}{7.34}{.54}{\textbullet  Miko  /  Host  /  online}
+\B[subtle]{.35}{4.58}{7.34}{.54}{$\circ$  ROLE B  /  open  /  Claim}
+\B[box]{8.25}{4.24}{7.85}{2.25}{}
+\Cap{8.49}{6.21}{H / ROOM CODE + HOST OPTION}
+\B[active]{8.5}{5.31}{3.2}{.57}{AB12CD  Copy}
+\B[subtle]{11.95}{5.31}{3.86}{.57}{Turns  /  Simultaneous}
+\node[anchor=west,font=\tiny,text=muted] at (8.5,4.64) {lock / reactions / voting off};
+\B[active]{.1}{.15}{16}{3.77}{}
+\Cap{.38}{3.57}{I / SHOWCASE + J / SYSTEM}
+\B[media]{.37}{1.15}{5.95}{1.91}{16:9 player / captions / credit}
+\B[subtle]{6.59}{2.35}{4.17}{.57}{Reaction  /  Vote if on}
+\B[subtle]{6.59}{1.48}{4.17}{.57}{Export progress + retry}
+\B[subtle]{11.02}{2.35}{4.78}{.57}{Info / success / error}
+\B[subtle]{11.02}{1.48}{4.78}{.57}{End-room confirmation}
+\node[anchor=west,font=\tiny,text=muted] at (.4,.52) {Accessible labels and controls remain HTML; animation never carries essential meaning.};
+\WireEnd
+\SpecsStart
+\Spec{Figma structure}{00 Brief / 01 Foundations / 02 Components / 03 Desktop flows / 04 Phone flows / 05 Rive / 06 Prototype. Use Auto Layout, variables and named variants.}
+\Spec{Required families}{A button; B field; C pack card/header; D import/conversion; E line row/detail; F recorder/media; G participant/role; H room code/host option; I showcase; J feedback/dialog.}
+\Spec{Variant rule}{Every interactive component needs default, hover where applicable, keyboard focus, disabled, busy and error as appropriate. Convey status with text/icon plus color.}
+\Spec{Content stress tests}{Real supplied pack: 1:15, 22 lines, two roles, long captions and overlapping timestamps. Test missing icon/subtitle/line image; many roles; long stage name.}
+\Spec{Tokens and accessibility}{Provide semantic colors, typography, spacing, radius, borders/elevation, icon sizes and motion durations. Target WCAG 2.2 AA, visible focus and reduced motion. Check 320 px phone.}
+\Spec{Handoff naming}{Examples: \texttt{C/Recorder/State=Saved} and \texttt{P07/Recording/Phone/Unsent}. Deliver one canonical component with instances in page frames.}
+\SpecsEnd
+
+\Page{R}{Rive components}{OPTIONAL MOTION CONTRACT}
+\WireStart
+\Cap{.2}{13.98}{ANIMATION STORYBOARD / ASSET SLOTS}
+\B[active]{.1}{11.31}{2.5}{2.38}{A / RECORD}
+\B[subtle]{2.81}{11.59}{2.42}{1.76}{idle\\still}
+\B[subtle]{5.5}{11.59}{2.42}{1.76}{arming\\150 ms}
+\B[active]{8.19}{11.59}{2.42}{1.76}{recording\\quiet loop}
+\B[subtle]{10.88}{11.59}{2.42}{1.76}{saved\\450 ms}
+\B[subtle]{13.57}{11.59}{2.42}{1.76}{error\\still}
+\B[active]{.1}{8.8}{2.5}{2.28}{B / PACK}
+\B[subtle]{2.81}{9.06}{2.42}{1.76}{importing\\indeterminate}
+\B[active]{5.5}{9.06}{2.42}{1.76}{converting\\data progress}
+\B[subtle]{8.19}{9.06}{2.42}{1.76}{ready\\450 ms}
+\B[subtle]{10.88}{9.06}{2.42}{1.76}{error\\still}
+\B[subtle]{13.57}{9.06}{2.42}{1.76}{retry\\app action}
+\B[active]{.1}{6.29}{2.5}{2.28}{C / ROOM}
+\B[subtle]{2.81}{6.55}{2.42}{1.76}{joining\\quiet loop}
+\B[active]{5.5}{6.55}{2.42}{1.76}{connected\\300 ms}
+\B[subtle]{8.19}{6.55}{2.42}{1.76}{reconnecting\\quiet loop}
+\B[subtle]{10.88}{6.55}{2.42}{1.76}{offline\\still}
+\B[subtle]{13.57}{6.55}{2.42}{1.76}{text status\\in HTML}
+\B[active]{.1}{3.78}{2.5}{2.28}{D / SHOW}
+\B[subtle]{2.81}{4.04}{2.42}{1.76}{waiting\\still}
+\B[active]{5.5}{4.04}{2.42}{1.76}{5--1 count\\1 s each}
+\B[subtle]{8.19}{4.04}{2.42}{1.76}{playing\\250 ms}
+\B[subtle]{10.88}{4.04}{2.42}{1.76}{paused\\still}
+\B[subtle]{13.57}{4.04}{2.42}{1.76}{finished\\400 ms}
+\B[active]{.1}{1.27}{2.5}{2.28}{E / REACT}
+\B[subtle]{2.81}{1.53}{2.42}{1.76}{idle\\hidden}
+\B[active]{5.5}{1.53}{2.42}{1.76}{burst\\under 1 s}
+\B[subtle]{8.19}{1.53}{2.42}{1.76}{settle\\200 ms}
+\B[subtle]{10.88}{1.53}{2.42}{1.76}{disabled\\host off}
+\B[subtle]{13.57}{1.53}{2.42}{1.76}{reduced motion\\still}
+\node[anchor=west,font=\tiny,text=muted] at (.2,.52) {App state drives all transitions; Rive decorates adjacent HTML. Each chosen asset ships with still and reduced-motion fallbacks.};
+\WireEnd
+\SpecsStart
+\Spec{A / \texttt{record-indicator.riv}}{Artboard \texttt{RecordIndicator}; VM \texttt{RecordIndicatorVM}. Properties: \texttt{phase} enum; \texttt{level} number 0--1. Slot 24--48 px. Saved settles within about 0.5 s; recording loop is quiet.}
+\Spec{B / \texttt{pack-progress.riv}}{\texttt{PackProgress} / \texttt{PackProgressVM}; \texttt{phase} enum, \texttt{progress} 0--1, \texttt{indeterminate} boolean. Slot 80--160 px. Progress follows app data, never invented easing.}
+\Spec{C / \texttt{room-presence.riv}}{\texttt{RoomPresence} / \texttt{RoomPresenceVM}; \texttt{phase} enum. Slot 24--48 px. Reconnecting loop subtle; visual must not suggest live voice transmission.}
+\Spec{D / \texttt{showcase-cue.riv}}{\texttt{ShowcaseCue} / \texttt{ShowcaseCueVM}; \texttt{phase} enum, \texttt{secondsRemaining} 0--5. Bounded video overlay. App timer controls numbers and start.}
+\Spec{E / \texttt{reaction-burst.riv}}{\texttt{ReactionBurst} / \texttt{ReactionBurstVM}; \texttt{kind} enum and \texttt{burst} trigger. One-shot under 1 s; disabled entirely when host turns reactions off.}
+\Spec{Delivery}{For chosen assets: editable source, \texttt{.riv}, still PNG/SVG, reduced-motion frame, artboard size, state machine and VM manifest. Verify, inspect, screenshot and test with Rive CLI. Text and controls stay in HTML.}
+\SpecsEnd
+\end{document}

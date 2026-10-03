@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "webby-voicer",
+  "main": "server/index.ts",
+  "compatibility_date": "2026-10-02",
+  "assets": { "directory": "./dist", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "durable_objects": { "bindings": [{ "name": "ROOMS", "class_name": "Room" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Room"] }],
+  "r2_buckets": [{ "binding": "ROOM_MEDIA", "bucket_name": "webby-voicer-room-media" }],
+  "observability": { "enabled": true, "traces": { "enabled": true } }
+}
