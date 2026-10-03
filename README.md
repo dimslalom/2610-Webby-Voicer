@@ -44,16 +44,19 @@ It reads existing *Dub* packs from [The Choicer Voicer](https://yeahmaybe.itch.i
 - **Legacy video path:** if your browser can't play Ogg Theora, the app converts the video locally with ffmpeg.wasm (about 31 MiB, downloaded once and cached).
 - **Try demo:** a built-in synthetic pack with a public-domain video, so you can try it without any files.
 
-## Design preview
+## Screenshots
 
-The UI is still at wireframe stage. These are the first of eleven pages in the handoff, shown with draft layout and no visual branding.
+Captured from the running app. The interface is still changing.
 
-<p align="center">
-  <img src="docs/assets/wireframe-p01-start.png" alt="Wireframe of the Start page, desktop and phone" width="85%">
-</p>
-
-- [Visual wireframes (PDF, 11 pages)](output/pdf/webby-voicer-visual-wireframes.pdf), with [editable TikZ source](docs/design/FIGMA_RIVE_WIREFRAMES.tex)
-- [Figma and Rive handoff specification (PDF)](output/pdf/webby-voicer-figma-rive-handoff.pdf)
+<table>
+  <tr>
+    <td width="50%"><img src="docs/assets/screen-start.png" alt="Start screen with Try the demo, Open pack ZIP and room code join"><br><sub><b>Start:</b> try the demo, open a pack, or join a room.</sub></td>
+    <td width="50%"><img src="docs/assets/screen-ready.png" alt="Pack ready screen showing the scene, line count and Rehearse solo and Host a room buttons"><br><sub><b>Pack ready:</b> rehearse solo or host a room.</sub></td>
+  </tr>
+  <tr>
+    <td colspan="2"><img src="docs/assets/screen-studio.png" alt="Solo studio with the scene video, caption, original versus recorded waveform and retake button"><br><sub><b>Solo studio:</b> record a line, compare your timing to the original, retake, then play or export the mixed scene.</sub></td>
+  </tr>
+</table>
 
 ## Getting started
 
@@ -88,7 +91,7 @@ server/    Cloudflare Worker: static assets, room API, market proxy
            └─ one Durable Object per room; R2 holds temporary room media
 tests/     Vitest: import, metadata, timeline, real-pack compatibility
 scripts/   demo pack builder, ffmpeg core staging, room smoke test
-docs/      design handoff and implementation plans
+docs/      implementation plans
 ```
 
 Pack parsing and timeline logic live in small, testable modules. Media processing happens in the browser wherever it can.
